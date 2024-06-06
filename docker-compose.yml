@@ -31,7 +31,7 @@ services:
       - vault
   
   attackiq:
-    image: containers.cisco.com/snetlamu/attackiq-tenant-portal
+    image: quay.io/snetlamu/attackiq-tenant-portal
     container_name: attackiq-app
     volumes:
       - vault-data:/tokens
