@@ -4,8 +4,8 @@ services:
     container_name: vault
     hostname: vault
     ports:
-      - 80:80
-      # - 443:443
+      # - 80:80
+      - 443:443
     volumes:
       - ./config.hcl:/vault/config/config.hcl
       - vault-data:/vault/file/
@@ -34,7 +34,7 @@ services:
     container_name: attackiq-app
     volumes:
       - vault-data:/tokens
-      # - ./certs:/certs
+      - ./certs:/certs
     network_mode: service:vault
     restart: always
     depends_on:
@@ -46,6 +46,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 30 --cleanup attackiq-app
+    depends_on:
+    - attackiq
 
 volumes:
   vault-data:
